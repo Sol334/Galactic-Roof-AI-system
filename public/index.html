@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galactic Roof AI System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="flex justify-between items-center">
+        <h1>Galactic Roof AI System</h1>
+        <div class="user-info-container">
+          <span id="user-info">Loading...</span>
+          <button id="logout-btn">Logout</button>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-btn" data-view="dashboard">Dashboard</button>
+        <button class="nav-btn" data-view="customers">Customers</button>
+        <button class="nav-btn" data-view="properties">Properties</button>
+        <button class="nav-btn" data-view="leads">Leads</button>
+        <button class="nav-btn" data-view="weather">Weather</button>
+        <button class="nav-btn" data-view="projects">Projects</button>
+        <button class="nav-btn" data-view="bridge">Bridge</button>
+        <button class="nav-btn" data-view="users">Users</button>
+        <button class="nav-btn" data-view="settings">Settings</button>
+      </nav>
+    </div>
+  </header>
+  
+  <main>
+    <div class="container">
+      <!-- Dashboard View -->
+      <div id="dashboard-view" class="view">
+        <h2>Dashboard</h2>
+        
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Active Leads</h3>
+            <div class="card-content">
+              <p>You have <strong id="active-leads-count">0</strong> active leads.</p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>Weather Events</h3>
+            <div class="card-content" id="weather-events">
+              Loading weather events...
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>Projects In Progress</h3>
+            <div class="card-content" id="projects-in-progress">
+              Loading projects...
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>SuperNinja Bridge</h3>
+            <div class="card-content">
+              <p>Status: <span id="bridge-status">Checking...</span></p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>System Overview</h3>
+          <div class="card-content">
+            <p>Welcome to the Galactic Roof AI System. This enhanced version provides access to customer data, property information, leads, weather events, and project management with secure authentication.</p>
+            <p>Use the navigation menu above to access different sections of the application.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Customers View -->
+      <div id="customers-view" class="view">
+        <div class="flex justify-between items-center mb-1">
+          <h2>Customers</h2>
+          <button class="btn">Add Customer</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="customers-table-body">
+              <tr>
+                <td colspan="5">Loading customers...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Properties View -->
+      <div id="properties-view" class="view">
+        <div class="flex justify-between items-center mb-1">
+          <h2>Properties</h2>
+          <button class="btn">Add Property</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Address</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Roof Type</th>
+                <th>Roof Age</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="properties-table-body">
+              <tr>
+                <td colspan="6">Loading properties...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Leads View -->
+      <div id="leads-view" class="view">
+        <div class="flex justify-between items-center mb-1">
+          <h2>Leads</h2>
+          <button class="btn">Add Lead</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Source</th>
+                <th>Interest</th>
+                <th>Status</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="leads-table-body">
+              <tr>
+                <td colspan="6">Loading leads...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Weather View -->
+      <div id="weather-view" class="view">
+        <h2>Weather Events</h2>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Event Type</th>
+                <th>Severity</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody id="weather-table-body">
+              <tr>
+                <td colspan="5">Loading weather events...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Projects View -->
+      <div id="projects-view" class="view">
+        <div class="flex justify-between items-center mb-1">
+          <h2>Projects</h2>
+          <button class="btn">Add Project</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="projects-table-body">
+              <tr>
+                <td colspan="6">Loading projects...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Users View (Admin only) -->
+      <div id="users-view" class="view">
+        <div class="flex justify-between items-center mb-1">
+          <h2>Users</h2>
+          <button class="btn">Add User</button>
+        </div>
+        
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Last Login</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-table-body">
+              <tr>
+                <td colspan="5">Loading users...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Bridge View -->
+      <div id="bridge-view" class="view">
+        <h2>Universal API Bridge</h2>
+        
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3>Bridge Status</h3>
+            <div class="card-content">
+              <p>Status: <span id="bridge-status-display">Checking...</span></p>
+              <div id="bridge-services" class="mt-1">
+                Loading services...
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>Weather Service</h3>
+            <div class="card-content">
+              <form id="weather-form">
+                <div class="form-group">
+                  <label for="weather-location">Location</label>
+                  <input type="text" id="weather-location" placeholder="Enter city or zip code">
+                </div>
+                <button type="submit" class="btn">Get Weather</button>
+              </form>
+              <div id="weather-result" class="mt-1"></div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>File Upload</h3>
+            <div class="card-content">
+              <form id="file-upload-form">
+                <div class="form-group">
+                  <label for="file-input">Select Files</label>
+                  <input type="file" id="file-input" multiple>
+                </div>
+                <button type="submit" class="btn">Upload</button>
+              </form>
+              <div id="upload-result" class="mt-1"></div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <h3>OAuth Connections</h3>
+            <div class="card-content">
+              <div id="oauth-status">
+                Loading OAuth status...
+              </div>
+              <div class="mt-1">
+                <a href="#" class="btn" onclick="window.open(bridge.getOAuthUrl('google'), 'oauth', 'width=600,height=600')">
+                  Connect Google
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mb-1">
+          <h3>Uploaded Files</h3>
+          <div class="card-content">
+            <div id="files-list">
+              Loading files...
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mb-1">
+          <h3>Webhooks</h3>
+          <div class="card-content">
+            <div id="webhooks-list">
+              Loading webhooks...
+            </div>
+            <div class="mt-1">
+              <button class="btn" onclick="document.getElementById('webhook-form').style.display = 'block'">
+                Register New Webhook
+              </button>
+              <div id="webhook-form" style="display: none;" class="mt-1">
+                <div class="form-group">
+                  <label for="webhook-url">Webhook URL</label>
+                  <input type="text" id="webhook-url" placeholder="https://example.com/webhook">
+                </div>
+                <div class="form-group">
+                  <label>Events</label>
+                  <div class="checkbox-group">
+                    <label><input type="checkbox" name="webhook-event" value="project.created"> Project Created</label>
+                    <label><input type="checkbox" name="webhook-event" value="project.updated"> Project Updated</label>
+                    <label><input type="checkbox" name="webhook-event" value="lead.created"> Lead Created</label>
+                    <label><input type="checkbox" name="webhook-event" value="weather.alert"> Weather Alert</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="webhook-description">Description</label>
+                  <input type="text" id="webhook-description" placeholder="Optional description">
+                </div>
+                <button class="btn" onclick="registerWebhook()">Register</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('webhook-form').style.display = 'none'">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Settings View -->
+      <div id="settings-view" class="view">
+        <h2>Settings</h2>
+        
+        <div class="card mb-1">
+          <h3>SuperNinja Bridge</h3>
+          <div class="card-content">
+            <p>Status: <span id="bridge-status-settings">Checking...</span></p>
+            <div class="form-group mt-1">
+              <label for="bridge-token">Bridge Token</label>
+              <input type="text" id="bridge-token" placeholder="Enter your SuperNinja Bridge token">
+            </div>
+            <button class="btn mt-1" id="connect-bridge-btn">Connect</button>
+          </div>
+        </div>
+        
+        <div id="admin-settings" class="card mb-1">
+          <h3>Admin Settings</h3>
+          <div class="card-content">
+            <p>These settings are only available to administrators.</p>
+            <div class="form-group mt-1">
+              <label for="backup-frequency">Database Backup Frequency</label>
+              <select id="backup-frequency">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="monthly">Monthly</option>
+              </select>
+            </div>
+            <button class="btn mt-1">Save Settings</button>
+            <button class="btn btn-secondary mt-1">Backup Now</button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h3>About</h3>
+          <div class="card-content">
+            <p>Galactic Roof AI System - Enhanced Version</p>
+            <p>Version: 2.0.0</p>
+            <p>This is an enhanced version of the Galactic Roof AI System that provides secure authentication and role-based access control.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="js/app.js"></script>
+  <script src="js/bridge.js"></script>
+</body>
+</html>
